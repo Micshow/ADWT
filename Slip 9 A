@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF=8">
+<meta name="viewport " content="width-device-width,inital-scale=1.0">
+<title>HTML5 Input Types</title>
+</head>
+<body>
+<h1>HTML 5 Input Types</h1>
+<!-- Date Time Input-->
+<lable for="datetime">Date and Time:</lable>
+<input type="datetime-local" id="datetime"><br><br>
+<!--Email Input-->
+<label for="email">Email:</label>
+<input type="email" id ="email" name="email"><br><br>
+<!--Submit Button-->
+<label for="search">search:</label>
+<input type="search" id="search" name="search"><br><br>
+<!--submit Button-->
+<input type="submit"  value="submit">
+</body>
+</html>
