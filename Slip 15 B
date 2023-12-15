@@ -1,0 +1,56 @@
+CREATE (:Movie {title: "M1"})
+CREATE (:Movie {title: "M2"})
+CREATE (:Actor {name: "A1"})
+CREATE (:Actor {name: "A2"})
+CREATE (:Actor {name: "Shahrukh Khan"})
+CREATE (:Business {revenue: 1000000})
+CREATE (:Business {revenue: 1500000})
+CREATE (:Award {name: "Best Film"})
+CREATE (:Award {name: "Best Actor"})
+CREATE (:Award {name: "Best Director"})
+
+MATCH(a:Actor{name:"A1"})
+MATCH(m:Movie{title:"M1"})
+CREATE(a)-[:ACTED_IN]->(m)
+
+MATCH(a:Actor{name:"A2"})
+MATCH(m:Movie{title:"M1"})
+CREATE(a)-[:ACTED_IN]->(m)
+
+MATCH(a:Actor{name:"Shahrukh Khan"})
+MATCH(m:Movie{title:"M2"})
+CREATE(a)-[:ACTED_IN]->(m)
+
+MATCH(m:Movie{title:"M1"})
+MATCH(b:Business{revenue: 1000000})
+CREATE(m)-[:MADE_BUSINESS]->(b)
+
+MATCH(m:Movie{title:"M2"})
+MATCH(b:Business{revenue: 1500000})
+CREATE(m)-[:MADE_BUSINESS]->(b)
+
+MATCH(m:Movie{title:"M2"})
+MATCH(a:Award{name: "Best Film"})
+CREATE(m)-[:RECIVED_AWARD]->(a)
+
+MATCH(m:Movie{title:"M1"})
+MATCH(a:Award{name: "Best Actor" })
+CREATE(m)-[:RECIVED_AWARD]->(a)
+Bu
+MATCH(m:Movie{title:"M2"})
+MATCH(a:Award{name:"Best Director" })
+CREATE(m)-[:RECIVED_AWARD]->(a)
+
+QUERIES:
+1)MATCH (m:Movie)-[mb:MADE_BUSINESS]->(b:Business)
+RETURN m, mb, b
+ORDER BY b.revenue DESC
+LIMIT 1;
+2)MATCH (b:Actor)-[a:ACTED_IN]->(m:Movie)
+RETURN b,a,m;
+3)MATCH (a:Actor {name: "Shahrukh Khan"})-[:ACTED_IN]->(m:Movie)
+RETURN m.title;
+4)MATCH (m:Movie)-[ra:RECIVED_AWARD]->()
+WITH m, COUNT(ra) AS awardsCount
+WHERE awardsCount > 1
+RETURN m, awardsCount;
