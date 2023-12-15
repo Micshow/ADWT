@@ -1,0 +1,10 @@
+db.emp.insert({ename:"Mr.Patil" ,proj:{pname:"UI",pduration:3,ptype:"Web development"}})
+db.emp.insert({ename:"Mr.Kapoor" ,proj:{pname:"UI",pduration:3,ptype:"Web development"}})
+a.list  all name of project where proj_type 
+db.emp.find({"proj.ptype":"Web development"})
+b. b.duration greater than 3
+db.emp.find({"proj.pduration":{$gt:2}})
+c. count no. of emp working on ___Project
+db.emp.find({ "proj.pname":"UI" }).count()
+d.list name of project on which Mr.Patil is working
+db.emp.find({"ename":"Mr.Patil"},{"proj.pname":1})
