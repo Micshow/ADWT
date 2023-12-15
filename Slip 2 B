@@ -1,0 +1,30 @@
+db.publisher.insertMany([
+    { name: "Newspaper House", state:"Gujrat" },
+    { name: "Bhaskar", state:"Maharashtra" },
+    { name: "Mumbai Mirror", state:"Gujrat"  },
+    { name: "Sandesh", state:"Gujrat" },
+    { name:"ABC",state:"Maharashtra"  }
+])
+
+db.newspaper.insertMany([
+    {  name: "Nashik Times", language: "English",sale:600,city:[{name:"Nashik",state: "Maharashtra" } ]},
+    {  name: "Lockmat", language: "English", sale:450,city:[{name:"Nashik",state: "Maharashtra" } ] },
+    {  name: "Times of India", language: "English",sale:500,city:[{name:"Nashik",state: "Maharashtra" } ] },
+    {  name: "Sandesh", language: "Marathi", sale:350,city:[{name:"Dhule",state: "UP" } ] },
+    {  name: "Divya Marathi", language: "English",sale:400, city:[{name:"Pune",state: "UP" } ]}
+])
+db.publisher.insertMany([
+...     { name: "Newspaper House", state:"Gujarat" },
+...     { name: "Bhaskar", state:"Maharashtra" },
+...     { name: "Mumbai Mirror", state:"Gujarat"  },
+...     { name: "Sandesh", state:"Gujarat" },
+...     { name:"ABC",state:"Maharashtra"  }
+... ])
+a.List all newspapers available "NASHIK" city
+db.newspaper.find({"city.name":"Nashik"})
+b. List all the newspaper of "Marathi" language
+db.newspaper.find({language:"Marathi"})
+c. Count no. of publishers of "Gujrat" state
+db.publisher.countDocuments({ state: "Gujarat" })
+d. Write a cursor to show newspapers with highest sale in Maharashtra State
+let cursor = db.newspaper.find({“city.state: "Maharashtra" }).sort({ sale: -1 }).limit(1) while (cursor.hasNext()) { printjson(cursor.next()); }
