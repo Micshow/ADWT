@@ -1,0 +1,68 @@
+ CREATE (:Department {name: 'Physics'})
+CREATE (:Department {name: 'Geography'})
+CREATE (:Department {name: 'Computer'})
+//Create Course
+CREATE (:Course {name: 'Physics Course 1'})
+CREATE (:Course {name: 'Physics Course 2'})
+CREATE (:Course {name: 'Geography Course 1'})
+CREATE (:Course {name: 'Computer Course 1'})
+CREATE (:Course {name: 'Computer Course 2'})
+//Relationships:
+MATCH(d:Department{name:'Physics'})
+MATCH(c:Course{name:'Physics Course 1'})
+CREATE(d)-[:CONDUCTS]->(c)
+MATCH(d:Department{name:'Physics'})
+MATCH(c:Course{name:'Physics Course 2'})
+CREATE(d)-[:CONDUCTS]->(c)
+MATCH(d:Department{name:'Physics'})
+MATCH(c:Course{name:'Computer Course 2'})
+CREATE(d)-[:CONDUCTS]->(c)
+MATCH(d:Department{name:'Geography'})
+MATCH(c:Course{name:'Geography Course 1'})
+CREATE(d)-[:CONDUCTS]->(c)
+
+MATCH(d:Department{name:'Computer'})
+MATCH(c:Course{name:'Computer Course 1'})
+CREATE(d)-[:CONDUCTS]->(c)
+MATCH(d:Department{name:'Computer'})
+MATCH(c:Course{name:'Computer Course 2'})
+CREATE(d)-[:CONDUCTS]->(c)
+MATCH(p:Person{name:'P1'})
+MATCH(c:Course{name: 'Physics Course 1'})
+CREATE(p)-[:RECOMMENDS]->(c)
+MATCH(p:Person{name:'P2'})
+MATCH(c:Course{name: 'Physics Course 2'})
+CREATE(p)-[:RECOMMENDS]->(c)
+MATCH(p:Person{name:'P2'})
+MATCH(c:Course{name: 'Computer Course 1'})
+CREATE(p)-[:RECOMMENDS]->(c)
+MATCH(p:Person{name:'P1'})
+MATCH(c:Course{name: 'Geography Course 1'})
+CREATE(p)-[:RECOMMENDS]->(c)
+MATCH(p:Person{name:'P2'})
+MATCH(c:Course{name: 'Geography Course 1'})
+CREATE(p)-[:RECOMMENDS]->(c)
+MATCH(p:Person{name:'P3'})
+MATCH(c:Course{name: 'Geography Course 1'})
+CREATE(p)-[:RECOMMENDS]->(c)
+
+1.List the details of all the departments in the university. [3] 
+=>MATCH (d:Department)
+RETURN d;
+2.List the names of the courses provided by Physics department. [3]
+=>MATCH (d:Department {name: 'Physics'})-[:CONDUCTS]->(c:Course)
+RETURN c.name;
+ANS="Physics Course 2"
+    "Physics Course 1"
+3.List the most recommended course in Geography department. [4]
+=>MATCH (d:Department {name: 'Geography'})-[:CONDUCTS]->(c:Course)<-[:RECOMMENDS]-(p:Person)
+RETURN c.name, COUNT(p) AS recommendations
+ORDER BY recommendations DESC
+LIMIT 1;
+ANS="Geography Course 1"	3
+4.d. List the names of common courses across Mathematics and computer department.[4]
+=>MATCH (p:Department {name: 'Physics'})-[:CONDUCTS]->(pCourse:Course)
+MATCH (c:Department {name: 'Computer'})-[:CONDUCTS]->(cCourse:Course)
+WHERE pCourse.name = cCourse.name
+RETURN pCourse.name;
+ANS="Computer Course 2"
