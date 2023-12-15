@@ -1,0 +1,13 @@
+db.propertylist.insert({area:"Nashik",rate:200000,city:"Nashik",owner:[{name:"Mr.Patil",age:50}]})
+db.propertylist.insert({area:"FC",rate:150000,owner:[{name:"Mr.Patil",age:50}]})
+db.propertylist.insert({area:"Nashik",rate:100000,city:"Nashik",owner:[{name:"Mr.Jadhav",age:55}]})
+db.propertylist.insert({area:"Mumbai",rate:95000,city:"Mumbai",owner:[{name:"Mr.Roy",age:55}]})
+db.propertylist.insert({area:"Mumbai",rate:80000,city:"Mumbai",owner:[{name:"Mr. Patil",age:55}]})
+
+Display area wise property details 
+`db.propertylist.find({}, { area: 1, rate: 1, _id: 0 })
+b) Display property owned by 'Mr. Patil' having minimum rate db.propertylist.find({"owner.name":"Mr.Patil"}).sort({"rate":1}).limit(1)
+c) Give the details of owner whose property is at "Nashik". 
+db.propertylist.find({area:"Nashik"})
+d) Display area of property whose rate is less than 100000.
+db.propertylist.find({rate:{$lt:100000}})
