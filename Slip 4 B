@@ -1,0 +1,39 @@
+db.hospital.insertMany(
+[
+  {
+    'Hospital Name': 'City Hospital',
+    Location: 'Nashik',
+    Specializations: [ 'Pediatric', 'Gynaec' ],
+    Rating: 5,
+    Name: 'Dr. Deshmukh'
+  },
+  {
+    'Hospital Name': 'ABC Hospital',
+    Location: 'Nashik',
+    Specializations: [ 'Pediatric', 'Gynaec', 'Orthopedic' ],
+    Rating: 4,
+    Name: 'Dr.Deshmukh'
+  },
+  {
+    'Hospital Name': 'XY Hospital',
+    Location: 'Nashik',
+    Specializations: [ 'Pediatric' ],
+    Rating: 5,
+    Name: 'Dr. Bhadane'
+  },
+  {
+    'Hospital Name': 'Ojas Hospital',
+    Location: 'Nashik',
+    Specializations: [ 'Pediatric' ],
+    Rating: 3,
+    Name: 'Dr. Mavale'
+  }
+])
+a.List the names of hospitals with ….. specialization.
+db.hospital.find({"Specializations":"Orthopedic"})
+b. List the Names of all hospital located in....... city
+db.hospital.find({"Location":"Nashik"})
+ c. List the names of hospitals where Dr. Deshmukh visits
+db.hospital.find({ "Name": "Dr. Deshmukh" }, { "hospital Name": 1, "_id": 0 })
+d. List the names of hospitals whose rating >=4
+db.hospital.find({ "Rating": { "$gte": 4 } })
