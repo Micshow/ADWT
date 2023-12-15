@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>3D Text Effect</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .threeD-text {
+            font-size: 36px;
+            font-weight: bold;
+            color: #3498db;
+            position: relative;
+            transition: transform 0.7s ease-in-out;
+        }
+
+        .threeD-text:hover {
+            transform: perspective(400px) rotateX(60deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="threeD-text">Hover over me</div>
+
+</body>
+</html>
